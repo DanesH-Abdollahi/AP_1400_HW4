@@ -7,10 +7,6 @@ int main(int argc, char** argv)
 {
     if (false) // make false to run unit-tests
     {
-        // int a { 2 };
-        // int* p { &a };
-        // const int*& b { p };
-        // std::cout << p << "---" << b << std::endl;
 
     } else {
         ::testing::InitGoogleTest(&argc, argv);

@@ -9,16 +9,14 @@ public:
     ~UniquePtr();
     UniquePtr(const UniquePtr&);
 
-    const T* get() const
-    {
-        return _p;
-    }
+    const T* get() const { return _p; }
     void reset();
     void reset(T*);
     T* release();
 
-    const T operator*() const { return *(this->get()); }
+    const T operator*() const { return *(_p); }
     T* operator->() const { return _p; }
+    UniquePtr& operator=(const UniquePtr&);
 
     operator bool() const { return (_p) ? true : false; }
 

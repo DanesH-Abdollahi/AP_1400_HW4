@@ -11,8 +11,8 @@ UniquePtr<T>::UniquePtr()
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-UniquePtr<T>::UniquePtr(const UniquePtr& ptr)
-    : _p { ptr.get() }
+UniquePtr<T>::UniquePtr(const UniquePtr<T>& ptr)
+    : _p { ptr._p }
 {
 }
 //----------------------------------------------------------------------------------
@@ -21,6 +21,17 @@ UniquePtr<T>::~UniquePtr()
 {
     delete _p;
     _p = nullptr;
+}
+//----------------------------------------------------------------------------------
+template <typename T>
+UniquePtr<T>& UniquePtr<T>::operator=(const UniquePtr<T>& ptr)
+{
+    if (this == &ptr)
+        return *this;
+
+    delete _p;
+    _p = ptr._p;
+    return *this;
 }
 //----------------------------------------------------------------------------------
 template <typename T>
