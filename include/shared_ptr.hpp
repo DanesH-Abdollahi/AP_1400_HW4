@@ -18,7 +18,6 @@ SharedPtr<T>::SharedPtr(SharedPtr<T>& ptr)
     , counter { &(++(*ptr.counter)) }
 
 {
-    // *counter += 1;
 }
 //----------------------------------------------------------------------------------
 template <typename T>
