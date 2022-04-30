@@ -1,56 +1,61 @@
-#include <algorithm>
-#include "gtest/gtest.h"
 #include "gmock/gmock.h"
+#include "gtest/gtest.h"
+#include <algorithm>
 
+#include "shared_ptr.h"
+#include "unique_ptr.h"
 #include <string>
 #include <vector>
-#include "unique_ptr.h"
-#include "shared_ptr.h"
 
-/*
-TEST(HW4Test, TEST1) {
-    UniquePtr<int> ptr1{new int{10}};
+TEST(HW4Test, TEST1)
+{
+    UniquePtr<int> ptr1 { new int { 10 } };
     EXPECT_EQ(*ptr1.get(), 10);
 
-    UniquePtr<std::string> ptr2{new std::string{"hello world!"}};
+    UniquePtr<std::string> ptr2 { new std::string { "hello world!" } };
     EXPECT_EQ(*ptr2.get(), "hello world!");
 }
 
-TEST(HW4Test, TEST2) {
-    UniquePtr<int> ptr1{make_unique<int>(10)};
+TEST(HW4Test, TEST2)
+{
+    UniquePtr<int> ptr1 { make_unique<int>(10) };
     EXPECT_EQ(*ptr1.get(), 10);
 
-    UniquePtr<std::string> ptr2{make_unique<std::string>("hello world!")};
+    UniquePtr<std::string> ptr2 { make_unique<std::string>("hello world!") };
     EXPECT_EQ(*ptr2.get(), "hello world!");
 }
 
-TEST(HW4Test, TEST3) {
+TEST(HW4Test, TEST3)
+{
     UniquePtr<int> ptr1;
     EXPECT_EQ(ptr1.get(), nullptr);
 
-    UniquePtr<std::string> ptr2{};
+    UniquePtr<std::string> ptr2 {};
     EXPECT_EQ(ptr2.get(), nullptr);
 }
 
-TEST(HW4Test, TEST4) {
-    UniquePtr<int> ptr1{new int{10}};
+TEST(HW4Test, TEST4)
+{
+    UniquePtr<int> ptr1 { new int { 10 } };
     EXPECT_EQ(*ptr1, 10);
 
-    UniquePtr<std::string> ptr2{new std::string{"hello world!"}};
+    UniquePtr<std::string> ptr2 { new std::string { "hello world!" } };
     EXPECT_EQ(*ptr2, "hello world!");
 
-    UniquePtr<std::vector<int>> ptr3{new std::vector<int>{1, 2, 3, 4, 5}};
+    UniquePtr<std::vector<int>> ptr3 { new std::vector<int> { 1, 2, 3, 4, 5 } };
     EXPECT_EQ((*ptr3)[1], 2);
 }
 
-TEST(HW4Test, TEST5) {
-    UniquePtr<std::string> ptr1{new std::string{"hello world!"}};
+TEST(HW4Test, TEST5)
+{
+    UniquePtr<std::string> ptr1 { new std::string { "hello world!" } };
     EXPECT_EQ(ptr1->length(), 12);
 
-    UniquePtr<std::vector<int>> ptr3{new std::vector<int>{1, 2, 3, 4, 5}};
+    UniquePtr<std::vector<int>> ptr3 { new std::vector<int> { 1, 2, 3, 4, 5 } };
     EXPECT_FALSE(ptr3->empty());
 }
 
+/*
 TEST(HW4Test, TEST6) {
     UniquePtr<std::string> ptr{new std::string{"hello world!"}};
     EXPECT_EQ(ptr->length(), 12);
@@ -115,7 +120,7 @@ TEST(HW4Test, TEST13) {
     EXPECT_EQ(*ptr2, 10);
     EXPECT_EQ(ptr1.get(), ptr2.get());
     EXPECT_EQ(ptr1.use_count(), 2);
-    EXPECT_EQ(ptr2.use_count(), 2);    
+    EXPECT_EQ(ptr2.use_count(), 2);
 }
 
 TEST(HW4Test, TEST14) {
@@ -128,8 +133,8 @@ TEST(HW4Test, TEST14) {
     EXPECT_EQ(ptr1.get(), ptr2.get());
     EXPECT_EQ(ptr2.get(), ptr3.get());
     EXPECT_EQ(ptr1.use_count(), 3);
-    EXPECT_EQ(ptr2.use_count(), 3);    
-    EXPECT_EQ(ptr3.use_count(), 3);    
+    EXPECT_EQ(ptr2.use_count(), 3);
+    EXPECT_EQ(ptr3.use_count(), 3);
 }
 
 TEST(HW4Test, TEST15) {
@@ -138,7 +143,7 @@ TEST(HW4Test, TEST15) {
         {
             SharedPtr<std::string> ptr2{ptr1};
             EXPECT_EQ(ptr1.use_count(), 2);
-            EXPECT_EQ(ptr2.use_count(), 2);    
+            EXPECT_EQ(ptr2.use_count(), 2);
         }
         EXPECT_EQ(ptr1.use_count(), 1);
         SharedPtr<std::string> ptr3{ptr1};
@@ -204,7 +209,3 @@ TEST(HW4Test, TEST21) {
     EXPECT_EQ(ptr2.use_count(), 2);
 }
 */
-
-
-
-
