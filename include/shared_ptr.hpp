@@ -30,6 +30,7 @@ SharedPtr<T>::~SharedPtr()
             delete counter;
             counter = nullptr;
         }
+        _p = nullptr;
     }
 }
 //----------------------------------------------------------------------------------
@@ -50,7 +51,7 @@ SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr<T>& ptr)
 template <typename T>
 void SharedPtr<T>::reset()
 {
-    delete _p; // ??
+    delete _p;
     _p = nullptr;
     delete counter;
     counter = nullptr;
@@ -59,7 +60,7 @@ void SharedPtr<T>::reset()
 template <typename T>
 void SharedPtr<T>::reset(T* ptr)
 {
-    delete _p; // ??
+    delete _p;
     _p = ptr;
     delete counter;
     counter = new int { 1 };

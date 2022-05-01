@@ -4,7 +4,7 @@
 template <typename T>
 class UniquePtr {
 public:
-    UniquePtr(T*&&);
+    UniquePtr(T*);
     UniquePtr();
     ~UniquePtr();
     UniquePtr(const UniquePtr&);
@@ -14,7 +14,7 @@ public:
     void reset(T*);
     T* release();
 
-    const T operator*() const { return *(_p); }
+    const T& operator*() const { return *(_p); }
     T* operator->() const { return _p; }
     UniquePtr& operator=(const UniquePtr&);
 

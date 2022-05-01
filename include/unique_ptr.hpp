@@ -1,5 +1,5 @@
 template <typename T>
-UniquePtr<T>::UniquePtr(T*&& ptr)
+UniquePtr<T>::UniquePtr(T* ptr)
     : _p { ptr }
 {
 }
@@ -37,14 +37,14 @@ UniquePtr<T>& UniquePtr<T>::operator=(const UniquePtr<T>& ptr)
 template <typename T>
 void UniquePtr<T>::reset()
 {
-    delete _p; // ??
+    delete _p;
     _p = nullptr;
 }
 //----------------------------------------------------------------------------------
 template <typename T>
 void UniquePtr<T>::reset(T* ptr)
 {
-    delete _p; // ??
+    delete _p;
     _p = ptr;
 }
 //----------------------------------------------------------------------------------
