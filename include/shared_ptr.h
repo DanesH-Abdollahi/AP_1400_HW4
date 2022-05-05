@@ -5,10 +5,10 @@
 template <typename T>
 class SharedPtr {
 public:
-    SharedPtr(T*&&);
-    SharedPtr();
-    ~SharedPtr();
-    SharedPtr(SharedPtr&);
+    SharedPtr(T*); // Constructor
+    SharedPtr(); // Default Constructor
+    ~SharedPtr(); // Destructor
+    SharedPtr(SharedPtr&); // Copy Constructor
 
     const T* get() const { return _p; }
     const size_t use_count() const { return (counter) ? *counter : 0; }
@@ -19,7 +19,7 @@ public:
     T* operator->() const { return _p; }
     SharedPtr& operator=(const SharedPtr&);
 
-    operator bool() const { return (_p) ? true : false; }
+    operator bool() const { return (_p) ? true : false; } // Cast SharedPtr to bool
 
 private:
     T* _p;

@@ -1,19 +1,19 @@
 template <typename T>
-SharedPtr<T>::SharedPtr(T*&& ptr)
+SharedPtr<T>::SharedPtr(T* ptr) // Constructor
     : _p { ptr }
     , counter { new int { 1 } }
 {
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-SharedPtr<T>::SharedPtr()
+SharedPtr<T>::SharedPtr() // Default Constructor
     : _p { nullptr }
-    , counter { new int { 1 } }
+    , counter { new int { 0 } }
 {
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-SharedPtr<T>::SharedPtr(SharedPtr<T>& ptr)
+SharedPtr<T>::SharedPtr(SharedPtr<T>& ptr) // Copy Constructor
     : _p { ptr._p }
     , counter { &(++(*ptr.counter)) }
 
@@ -21,10 +21,10 @@ SharedPtr<T>::SharedPtr(SharedPtr<T>& ptr)
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-SharedPtr<T>::~SharedPtr()
+SharedPtr<T>::~SharedPtr() // Destructor
 {
-    if (counter) {
-        if (--(*counter) == 0) {
+    if (counter) { // if the counter is not nullptr
+        if (--(*counter) == 0) { // if the counter value is 1
             delete _p;
             _p = nullptr;
             delete counter;
@@ -37,7 +37,7 @@ SharedPtr<T>::~SharedPtr()
 template <typename T>
 SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr<T>& ptr)
 {
-    if (this == &ptr)
+    if (this == &ptr) // If The Input is Same as The Object
         return *this;
 
     delete _p;
@@ -49,7 +49,7 @@ SharedPtr<T>& SharedPtr<T>::operator=(const SharedPtr<T>& ptr)
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-void SharedPtr<T>::reset()
+void SharedPtr<T>::reset() // Reset Function
 {
     delete _p;
     _p = nullptr;
@@ -58,7 +58,7 @@ void SharedPtr<T>::reset()
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-void SharedPtr<T>::reset(T* ptr)
+void SharedPtr<T>::reset(T* ptr) // Reset Function with input
 {
     delete _p;
     _p = ptr;
@@ -69,6 +69,6 @@ void SharedPtr<T>::reset(T* ptr)
 template <typename T>
 SharedPtr<T> make_shared(const T& N)
 {
-    return SharedPtr<T> { new T { N } };
+    return SharedPtr<T> { new T { N } }; // Return R-Value SharedPtr Object ( Using RVO )
 }
-//----------------------------------------------------------------------------------
+//------------------------------- The End ------------------------------------------

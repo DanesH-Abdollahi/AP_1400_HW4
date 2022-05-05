@@ -1,55 +1,38 @@
 template <typename T>
-UniquePtr<T>::UniquePtr(T* ptr)
+UniquePtr<T>::UniquePtr(T* ptr) // Constructor
     : _p { ptr }
 {
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-UniquePtr<T>::UniquePtr()
+UniquePtr<T>::UniquePtr() // Default Constructor
     : _p { nullptr }
 {
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-UniquePtr<T>::UniquePtr(const UniquePtr<T>& ptr)
-    : _p { ptr._p }
-{
-}
-//----------------------------------------------------------------------------------
-template <typename T>
-UniquePtr<T>::~UniquePtr()
+UniquePtr<T>::~UniquePtr() // Destructor
 {
     delete _p;
     _p = nullptr;
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-UniquePtr<T>& UniquePtr<T>::operator=(const UniquePtr<T>& ptr)
-{
-    if (this == &ptr)
-        return *this;
-
-    delete _p;
-    _p = ptr._p;
-    return *this;
-}
-//----------------------------------------------------------------------------------
-template <typename T>
-void UniquePtr<T>::reset()
+void UniquePtr<T>::reset() // Reset Function
 {
     delete _p;
     _p = nullptr;
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-void UniquePtr<T>::reset(T* ptr)
+void UniquePtr<T>::reset(T* ptr) // Reset Function with input
 {
     delete _p;
     _p = ptr;
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-T* UniquePtr<T>::release()
+T* UniquePtr<T>::release() // Release Function
 {
     T* tmp { _p };
     _p = nullptr;
@@ -57,8 +40,8 @@ T* UniquePtr<T>::release()
 }
 //----------------------------------------------------------------------------------
 template <typename T>
-UniquePtr<T> make_unique(const T& N)
+UniquePtr<T> make_unique(const T& N) // Make Unique Function
 {
-    return UniquePtr<T> { new T { N } };
+    return UniquePtr<T> { new T { N } }; // Return R-Value UniquePtr Object ( Using RVO )
 }
-//----------------------------------------------------------------------------------
+//------------------------------- The End ------------------------------------------
