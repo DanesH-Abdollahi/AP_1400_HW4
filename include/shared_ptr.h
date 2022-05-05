@@ -11,7 +11,7 @@ public:
     SharedPtr(SharedPtr&); // Copy Constructor
 
     const T* get() const { return _p; }
-    const size_t use_count() const { return (counter) ? *counter : 0; }
+    const int use_count() const { return (counter) ? *counter : 0; }
     void reset();
     void reset(T*);
 
